@@ -1,5 +1,7 @@
 # Simple-Slack-Watchman
 
+![Capture](https://i.imgur.com/SNr6pT2.png)
+
 This is slack alarm bot for server monitoring
 
 *Slack Webhook app is needed
