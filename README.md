@@ -21,9 +21,9 @@ This is slack alarm bot for server monitoring
 
 ## args
 1. key : Slack WebHook key (hooks.slack.com/services/--key-----)
-2. interval : checking loop time
-3. cpu : limitation for cpu use percentage  
-4. ram : limitation for ram use percentage  
+2. interval : Checking loop time
+3. cpu : Limitation for cpu use percentage  
+4. ram : Limitation for ram use percentage  
 
 <br/>
 <br/>
