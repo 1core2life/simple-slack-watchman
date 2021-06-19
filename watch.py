@@ -1,7 +1,6 @@
 import requests 
 import psutil
 import time
-import socket
 from args import get_args
 
 
@@ -27,8 +26,13 @@ def check_local_state(cpu, mem_used_percent_size, mem_available_size):
 
 
 def check_network_state():
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        return s.connect_ex(('localhost', 80)) == 0
+    result = False
+    connections = psutil.net_connections()
+    for con in connections:
+        if con.laddr.port == 80:
+            result = True
+    
+    return result
 
 
 def send_alert(cpu, mem_used_percent_size, mem_available_size):
