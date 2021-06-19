@@ -26,11 +26,11 @@ def check_local_state(cpu, mem_used_percent_size, mem_available_size):
 
 
 def check_network_state():
-    result = False
+    result = True
     connections = psutil.net_connections()
     for con in connections:
         if con.laddr.port == 80:
-            result = True
+            result = False
     
     return result
 
