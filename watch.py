@@ -18,9 +18,9 @@ def get_system_state():
 
 
 def check_local_state(cpu, mem_used_percent_size, mem_available_size):
-    print(cpu, mem_used_percent_size, mem_available_size)
+    print("CPU: {0}% , RAM: {1}%, Available: {2} GB".format(round(cpu, 1),round(mem_used_percent_size, 1), round(mem_available_size,1)))
 
-    if cpu > ALERT_CPU_PERCENT or mem_available_size > ALERT_RAM_PERCENT:
+    if cpu > ALERT_CPU_PERCENT or mem_used_percent_size > ALERT_RAM_PERCENT:
         return True
     else:
         return False
