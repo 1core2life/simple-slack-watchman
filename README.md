@@ -26,7 +26,7 @@ This is slack alarm bot for server monitoring
 2. interval : Checking loop time
 3. cpu : Limitation for cpu use percentage  
 4. ram : Limitation for ram use percentage  
-5. url : target api url
+5. url : target api url (option)
 
 <br/>
 <br/>
