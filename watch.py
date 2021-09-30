@@ -35,8 +35,8 @@ def check_network_state():
         URL = 'https://' + ALERT_URL
 
     try:
-        response = requests.get(URL) 
-        if response.status_code != 200:
+        response = requests.get(URL)
+        if response.status_code == 200:
             result = False
     except:
         result = False
