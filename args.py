@@ -11,6 +11,8 @@ def get_args():
                         help='Limitation for ram use percentage')
     parser.add_argument('--interval', required=True, type=float,
                         help='Checking loop time')
+    parser.add_argument('--url', required=False, type=str,
+                        help='check state target url')
 
     args = parser.parse_args()
 

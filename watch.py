@@ -7,6 +7,7 @@ from args import get_args
 args = None
 ALERT_CPU_PERCENT = None
 ALERT_RAM_PERCENT = None
+ALERT_URL = None
 
 def get_system_state():
     cpu = psutil.cpu_percent(interval=0.1)
@@ -27,10 +28,19 @@ def check_local_state(cpu, mem_used_percent_size, mem_available_size):
 
 def check_network_state():
     result = True
-    connections = psutil.net_connections()
-    for con in connections:
-        if con.laddr.port == 80:
+
+    if not ALERT_URL:
+        URL = "http://127.0.0.1"
+    else:
+        URL = 'https://' + ALERT_URL
+
+    try:
+        response = requests.post(URL) 
+        if response.status_code != 200:
             result = False
+    except:
+        result = False
+        
     
     return result
 
@@ -49,13 +59,20 @@ if __name__ == '__main__':
 
     ALERT_CPU_PERCENT = args.cpu
     ALERT_RAM_PERCENT = args.ram
+    ALERT_URL = args.url
 
     alert = False
     while(True):
         cpu, mem_used_percent_size, mem_available_size = get_system_state()
-        if (check_local_state(cpu, mem_used_percent_size, mem_available_size) or check_network_state()):
+
+        # Check Error State
+        if (check_local_state(cpu, mem_used_percent_size, mem_available_size)):
+            alert = True
+        if (check_network_state()):
             alert = True
 
+
+        # Send Error Message
         if (alert):
             alert = False
             print("Message send...")
